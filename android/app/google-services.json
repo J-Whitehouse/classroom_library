@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "415475255424",
+    "project_id": "classroom-library-dcf90",
+    "storage_bucket": "classroom-library-dcf90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415475255424:android:4d6b5e7e9d912aead17e65",
+        "android_client_info": {
+          "package_name": "com.example.classroom_library"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415475255424-iidtb0nksqmgr417fmtevt6n9mb2jc0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.classroom_library",
+            "certificate_hash": "985ebb38e39a655a861c7fcdd1ff09f806f9af4d"
+          }
+        },
+        {
+          "client_id": "415475255424-pmp44f31erbhnu067a5j2mqdmq12nsco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASLBO0gMHUbG4Cl-lTO3Mr6wk9aWkgJkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415475255424-pmp44f31erbhnu067a5j2mqdmq12nsco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
