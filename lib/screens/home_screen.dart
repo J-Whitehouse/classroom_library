@@ -1,4 +1,4 @@
-import 'package:classroom_library/screens/signin_screen.dart';
+import 'package:classroom_library/screens/signin_screen.dart' as signIn;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:flutterfire_ui/database.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:flutterfire_ui/i10n.dart';
+
 
 import '../utils/colors.dart';
 import 'book_screen.dart';
@@ -31,9 +32,23 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Test'),
-        backgroundColor: Colors.deepPurple[300],
+        title: const Text('Your Library'),
+        backgroundColor: Colors.greenAccent,
+        foregroundColor: Colors.black,
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                print("Signed Out");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => signIn.SignInScreen()));
+              });
+            },
+          ),
+        ],
       ),
       body: FirestoreQueryBuilder<Book>(
         query: bookCollection.orderBy('title'),
@@ -70,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
         tooltip: 'Open Menu',
         child: const Icon(Icons.menu),
         foregroundColor: Colors.black,
-        backgroundColor: Colors.deepPurple[300],
+        backgroundColor: Colors.greenAccent,
       ),
     );
   }
@@ -109,11 +124,19 @@ when submit button is pressed,
  */
 
 
-
-
-
+  void SignOut() async {
+    await FirebaseAuth.instance.signOut();
+    print("Signed Out");
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => signIn.SignInScreen()));
+  }
 
 }
+
+
+
+
+
 
 
 

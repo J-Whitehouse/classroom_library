@@ -33,14 +33,17 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                20,
+                MediaQuery.of(context).size.height * 0.1,
+                20,
+                0),
             child: Column(
               children: <Widget>[
                 logoWidget("assets/images/bookshelf.png"),
                 SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Username", Icons.person_outline, true, _emailTextController),
+                reusableTextField("Enter Username", Icons.person_outline, false, _emailTextController),
                 SizedBox(
                   height: 20,
                 ),
@@ -56,7 +59,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   .then((value) {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context)
+                      { return AlertDialog(
+                        title:  Text("Wrong Email or Password"),
+                        content:  Text("Error ${error.toString()}"),
+                        actions: <Widget>[
+                          FlatButton(
+                            child:  Text("Close"),
+                            onPressed: () { Navigator.of(context).pop(); },
+                          ),],
+                      );},
+                    );
                   });
                 }),
                 SizedBox(
@@ -88,7 +103,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             width: 10,
                           ),
                           const Text(
-                            "Login with Gmail",
+                            "Sign in with Google",
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
