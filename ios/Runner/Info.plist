@@ -45,3 +45,8 @@
 	<false/>
 </dict>
 </plist>
+<key>NSCameraUsageDescription</key>
+<string>Used for scanning in the books from the ISBN code</string>
+
+<key>io.flutter.embedded_views_preview</key>
+<string>YES</string>

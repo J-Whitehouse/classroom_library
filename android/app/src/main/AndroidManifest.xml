@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.classroom_library">
+    <uses-permission android:name="android.permission.CAMERA" />
    <application
         android:label="classroom_library"
         android:name="${applicationName}"

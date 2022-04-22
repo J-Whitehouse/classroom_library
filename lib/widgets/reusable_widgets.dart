@@ -66,4 +66,3 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
     ),
   );
 }
-

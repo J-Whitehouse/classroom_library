@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../widgets/reusable_widgets.dart';
 import 'home_screen.dart';
-import 'teacher_signup_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class TeacherSignUpScreen extends StatefulWidget {
+  const TeacherSignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _TeacherSignUpScreenState createState() => _TeacherSignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _firstNameTextController = TextEditingController();
@@ -28,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Student Sign Up",
+          "Teacher Sign Up",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
@@ -95,13 +94,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   });
                   User user = result.user!;
                   FirebaseFirestore.instance
-                      .collection('students')
+                      .collection('teachers')
                       .doc(user.uid)
                       .set({
                     'firstName': _firstNameTextController.text,
                     'lastName': _lastNameTextController.text,
                     'email': _emailTextController.text,
-                    'teacher': false,
+                    'teacher': true,
+                  });
+                  FirebaseFirestore.instance
+                      .collection('teachers')
+                      .doc(user.uid)
+                      .collection('students')
+                      .add({
+                    'studentID': "_studentID",
+                    'studentFirstName': "_studentFirstName",
+                    'studentLastName': "_studentLastName",
+                  });
+                  FirebaseFirestore.instance
+                      .collection('teachers')
+                      .doc(user.uid)
+                      .collection('books')
+                      .add({
+                    'bookID': "",
+                    'studentFirstName': "_studentFirstName",
+                    'studentLastName': "_studentLastName",
                   }).then((value) => Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -126,33 +143,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             );
                           }));
                 }),
-                SizedBox(
-                  height: 20,
-                ),
-                signUpOption()
               ],
             ),
           ))),
-    );
-  }
-
-  Row signUpOption() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text("Signing in as a Teacher?",
-            style: TextStyle(color: Colors.white70)),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => TeacherSignUpScreen()));
-          },
-          child: const Text(
-            " Sign Up",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        )
-      ],
     );
   }
 }

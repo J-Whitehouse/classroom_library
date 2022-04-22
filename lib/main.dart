@@ -1,5 +1,6 @@
 import 'package:classroom_library/screens/home_screen.dart';
 import 'package:classroom_library/screens/signin_screen.dart';
+import 'package:classroom_library/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final FirebaseServices firebaseServices = FirebaseServices();
 
-  var user = FirebaseAuth.instance.currentUser;
+    var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       return MaterialApp(
         title: 'Classroom Library',
@@ -27,7 +29,6 @@ class MyApp extends StatelessWidget {
         ),
         home: HomeScreen(),
       );
-
     }
     return MaterialApp(
       title: 'Classroom Library',

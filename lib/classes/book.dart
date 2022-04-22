@@ -1,19 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-class Book {
+class BookModel {
+  String title;
+  String author;
+  String description;
+  String imageUrl;
+  String bookUrl;
+  String isbn;
+  String publisher;
+  String publishedDate;
+  String pageCount;
 
-  final String title;
-  final String author;
-  final String description;
-  final String imageUrl;
-  final String bookUrl;
-  final String isbn;
-  final String publisher;
-  final String publishedDate;
-  final String pageCount;
-
-  Book({
+  BookModel({
     required this.title,
     required this.author,
     required this.description,
@@ -40,17 +38,17 @@ class Book {
   }
 }
 
-final bookCollection = FirebaseFirestore.instance.collection('books').withConverter<Book>(
-    fromFirestore: (snapshot, _) => Book(
-      title: snapshot.data()!['title'],
-      author: snapshot.data()!['author'],
-      description: snapshot.data()!['description'],
-      imageUrl: snapshot.data()!['imageUrl'],
-      bookUrl: snapshot.data()!['bookUrl'],
-      isbn: snapshot.data()!['isbn'],
-      publisher: snapshot.data()!['publisher'],
-      publishedDate: snapshot.data()!['publishedDate'],
-      pageCount: snapshot.data()!['pageCount'],
-    ),
-    toFirestore: (book, _) => book.toMap()
-);
+final bookCollection =
+    FirebaseFirestore.instance.collection('books').withConverter<BookModel>(
+        fromFirestore: (snapshot, _) => BookModel(
+              title: snapshot.data()!['title'],
+              author: snapshot.data()!['author'],
+              description: snapshot.data()!['description'],
+              imageUrl: snapshot.data()!['imageUrl'],
+              bookUrl: snapshot.data()!['bookUrl'],
+              isbn: snapshot.data()!['isbn'],
+              publisher: snapshot.data()!['publisher'],
+              publishedDate: snapshot.data()!['publishedDate'],
+              pageCount: snapshot.data()!['pageCount'],
+            ),
+        toFirestore: (book, _) => book.toMap());
