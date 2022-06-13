@@ -1,6 +1,6 @@
 # classroom_library
 
-Application for teachers or personal library owners to track their books being rented out
+Flutter app used for teachers to scan the ISBN on their books in their classroom so their students assigned under their class can rent the books out and it will keep track of who has rented which book.
 
 ## Getting Started
 
